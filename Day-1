@@ -1,0 +1,29 @@
+//GeeksForGeeks- Question1-Leaders in an array
+class Solution{
+    //Function to find the leaders in the array.
+    static ArrayList<Integer> leaders(int arr[], int n){
+        // Your code here
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        for (int i = 0; i < n; i++) {
+            int j = 0;
+            for (j = i+1; j < n; j++) {
+                if (arr[j] > arr[i]) break;
+            }
+            
+            if (j == n) {
+                list.add(arr[i]);
+            }
+        }
+        
+        return list;
+    }
+}
+
+//Sort an array of 0s, 1s and 2s
+class Solution
+{
+    public static void sort012(int a[], int n)
+    {
+        Arrays.sort(a);
+    }
+}
