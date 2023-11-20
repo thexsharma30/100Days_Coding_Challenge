@@ -1,0 +1,85 @@
+//Question 1: Determine if Two Trees are Identical
+//Given two binary trees, the task is to find if both of them are identical or not.
+class Solution
+{
+    //Function to check if two trees are identical.
+	boolean isIdentical(Node root1, Node root2)
+	{
+	   Queue<Node> q1 = new LinkedList<>();
+        Queue<Node> q2 = new LinkedList<>();
+        q1.add(root1);
+        q2.add(root2);
+        if(root1==null){
+            return false;
+        }
+        if(root2==null){
+            return false;
+        }
+        int size1 = getSize1(root1);
+        int size2 = getSize2(root2);
+        if(size1!=size2){
+            return false;
+        }
+        
+        while(!q1.isEmpty()&&!q2.isEmpty()){
+            Node check1= q1.poll();
+            Node check2 = q2.poll();
+            if(check1.data!=check2.data){
+                return false;
+            }
+            if(check1.left!=null&&check2.left!=null){
+                q1.add(check1.left);
+                q2.add(check2.left);
+            }
+            if(check1.right!=null&&check2.right!=null){
+                q1.add(check1.right);
+                q2.add(check2.right);
+            }
+            
+        }
+        return true;
+        
+    }
+    int getSize1(Node root1){
+        if(root1==null){
+            return 0;
+        }
+        return 1+getSize1(root1.left)+getSize1(root1.right);
+        
+    }
+    int getSize2(Node root2){
+        if(root2==null){
+            return 0;
+        }
+        return 1+getSize2(root2.left)+getSize2(root2.right);
+        
+	}
+	
+}
+
+
+
+//Question 2:Majority Element
+//Given an array A of N elements. Find the majority element in the array. A majority element in an array A of size N is an element that appears strictly more than N/2 times in the array.
+class Solution
+{
+    static int majorityElement(int a[], int size)
+    {
+        // your code here
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for(int i: a){
+            if(!map.containsKey(i)){
+                map.put(i,1);
+            }
+            else{
+                map.put(i,map.get(i)+1);
+            }
+        }
+        int res = -1;
+        for(Map.Entry<Integer,Integer> el: map.entrySet()){
+            if(el.getValue() > size/2) res = el.getKey();
+        }
+        return res;
+        
+    }
+}
