@@ -1,0 +1,35 @@
+//Question: Print Pattern
+//Print a sequence of numbers starting with N, without using loop, where replace N with N - 5, until N > 0. After that replace N with N + 5 until N regains its initial value.
+
+class Solution{
+    public List<Integer> pattern(int N){
+        // code here
+        ArrayList<Integer> al=new ArrayList<>();
+        if(N<=0){
+            al.add(N);
+            return al;
+        }
+        
+        pos(N,al);
+        neg(al.get(al.size()-1)+5,N,al);
+        return al;
+    }
+    public static void pos(int N,ArrayList<Integer> a){
+        if(N<=0){
+            a.add(N);
+            return;
+        }
+        a.add(N);
+        pos(N-5,a);
+        
+    }
+    public static void neg(int N,int temp,ArrayList<Integer> b){
+        if(N==temp){
+            b.add(N);
+            return;
+        }
+        b.add(N);
+        neg(N+5,temp,b);
+        
+    }
+}
