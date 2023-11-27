@@ -1,0 +1,13 @@
+//Question : Sum of dependencies in a graph
+//Given a directed graph with V nodes and E edges, if there is an edge from u to v, then we will say that u depends on v. Number of Dependencies (NoD) for a node x is the total count of nodes that x depends upon. 
+//Find out the sum of number of dependencies of every node.
+
+class Solution {
+    int sumOfDependencies(ArrayList<ArrayList<Integer>> adj, int V) {
+        // code here
+        int sum=0;
+        for(int i=0;i<V;i++)
+          sum+=adj.get(i).size();
+        return sum;  
+    }
+};
