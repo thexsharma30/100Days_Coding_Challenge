@@ -1,0 +1,33 @@
+/*Question : Check whether BST contains Dead End
+Given a Binary Search Tree that contains unique positive integer values greater than 0. The task is to complete the function isDeadEnd which returns true if the BST contains a dead end else returns false.
+Here Dead End means a leaf node, at which no other node can be inserted.*/
+
+class Solution
+{
+    public static void Inorder(Node root,ArrayList<Integer> l){
+        if(root == null){
+            return;
+        }
+        Inorder(root.left,l);
+        l.add(root.data);
+        Inorder(root.right,l);
+        return;
+    }
+    public static boolean isDeadNode(Node root,ArrayList<Integer> l){
+        if(root == null){
+            return false;
+        }
+        if(root.left == null && root.right == null){
+            if(l.contains(root.data-1) && l.contains(root.data+1)){
+                return true;
+            }
+        }
+        return isDeadNode(root.left,l) || isDeadNode(root.right,l);
+    }
+    public static boolean isDeadEnd(Node root){
+       ArrayList<Integer> l = new ArrayList<>();
+       l.add(0);
+       Inorder(root,l);
+       return isDeadNode(root,l);
+    }
+}
