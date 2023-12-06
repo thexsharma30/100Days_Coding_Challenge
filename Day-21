@@ -1,0 +1,32 @@
+//Question : How Many X's?
+//Given two integers L, R, and digit X. Find the number of occurrences of X in all the numbers in the range (L, R) excluding L and R.
+
+class Solution {
+    int countX(int L, int R, int X) {
+// code here
+int ans = 0;
+for(int i=L+1;i<R;i++)
+{
+ans += count(i, X);
+}
+return ans;
+}
+
+int count(int i, int X)
+{
+String s = String.valueOf(i);
+String x = String.valueOf(X);
+int c = 0;
+if(s.contains(x))
+{
+int ind = s.indexOf(x);
+while(ind!=-1)
+{
+ind = s.indexOf(x, ind+1);
+c++;
+}
+}
+
+return c;
+}
+};
