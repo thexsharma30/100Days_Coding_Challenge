@@ -1,0 +1,32 @@
+//Question: Smith Number
+//Given a number n, the task is to find out whether this number is a Smith number or not. A Smith number is a composite number whose sum of digits is equal to the sum of digits of its prime factors.
+
+class Solution {
+    static int smithNum(int n) {
+        // code here
+         int sum=0;
+        int k=n;
+        int temp=digitSum(n);
+        for(int i=2;i<=Math.sqrt(n);i++){
+            while(n%i==0){
+                sum+=digitSum(i);
+                n/=i;
+            }
+        }
+        if(n>1 && n!=k){
+            sum+=digitSum(n);
+        }
+        
+        return sum==temp?1:0;
+    }
+    static int digitSum(int n){
+        int temp=n;
+        int ans=0;
+        while(temp!=0){
+            ans+=temp%10;
+            temp/=10;
+        }
+        return ans;
+
+    }
+};
