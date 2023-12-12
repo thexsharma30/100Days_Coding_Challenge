@@ -1,0 +1,31 @@
+/*Question: Gold Mine Problem
+Given a gold mine called M of (n x m) dimensions. Each field in this mine contains a positive integer which is the amount of gold in tons. 
+Initially the miner can start from any row in the first column. From a given cell, the miner can move to the cell diagonally up towards the right to the right to the cell diagonally down towards the right
+Find out maximum amount of gold which he can collect until he can no longer move.*/
+
+class Solution{
+    static int maxGold(int n, int m, int M[][])
+    {
+        int ans = 0;
+        for(int j = 1; j < m; j += 1) {
+            for(int i = 0; i < n; i += 1) {
+                int a = 0;
+                if(i - 1 >= 0) {
+                    a = M[i-1][j-1];
+                }
+                
+                int b = M[i][j-1];
+                
+                int c = 0;
+                if(i + 1 < n) {
+                    c = M[i+1][j-1];
+                }
+                M[i][j] += Math.max(a, Math.max(b, c));
+                if(M[i][j] > ans) {
+                    ans = M[i][j];
+                }
+            }
+        }
+        return ans;
+    }
+}
