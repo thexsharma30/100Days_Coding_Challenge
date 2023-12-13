@@ -1,0 +1,16 @@
+//Question : Consecutive 1's not allowed
+//Given a positive integer N, count all possible distinct binary strings of length N such that there are no consecutive 1’s. Output your answer modulo 109 + 7.
+
+class Solution {
+    long countStrings(int n) {
+        long mod= (long) 1e9+7;
+        long a[]= new long[n], b[]= new long[n];
+        a[0]=b[0]=1;
+        for(int i=1;i<n;i++){
+            a[i]=(a[i-1]+b[i-1])%mod;
+            b[i]= a[i-1]%mod;
+        }
+        
+        return (a[n-1]+b[n-1])%mod;
+    }
+}
