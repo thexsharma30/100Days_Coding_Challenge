@@ -1,0 +1,11 @@
+//Question : String's Count
+//Given a length n, count the number of strings of length n that can be made using a, b and c with at-most one b and two c allowed.
+
+class Solution 
+{ 
+    static long countStr(long n)
+	{
+	    // code here
+	    return 1+n+n+n*(n-1)+n*(n-1)/2 + n*(n-1)*(n-2)/2;
+	}
+} 
