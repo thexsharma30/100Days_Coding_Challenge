@@ -1,0 +1,21 @@
+//Question : Modified Game of Nim
+//You are given an array A of n elements. There are two players player 1 and player 2.
+//A player can choose any of element from an array and remove it. If the bitwise XOR of all remaining elements equals 0 after removal of the selected element, then that player loses. 
+//Find out the winner if player 1 starts the game and they both play their best. 
+
+class Solution{
+    static int findWinner(int n, int A[]){
+        // code here
+        int xor = 0;
+        for(int i = 0; i < n; i++){
+            xor ^= A[i];
+        }
+        
+        if(xor == 0){
+            return 1;
+        }
+        else{
+            return (n % 2) + 1;
+        }
+    }
+}
