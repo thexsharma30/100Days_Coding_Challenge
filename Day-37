@@ -1,0 +1,30 @@
+//Question :Maximum Meetings in One Room
+//There is one meeting room in a firm. There are N meetings in the form of (S[i], F[i]) where S[i] is the start time of meeting i and F[i] is the finish time of meeting i. 
+//The task is to find the maximum number of meetings that can be accommodated in the meeting room. 
+//You can accommodate a meeting if the start time of the meeting is strictly greater than the finish time of the previous meeting. Print all meeting numbers.
+
+class Solution {
+    public static ArrayList<Integer> maxMeetings(int N, int[] S, int[] F) {
+        ArrayList<Integer> ans = new ArrayList<>();
+        int meet[][] = new int[N][3];
+        for(int i=0;i<N;i++){
+            meet[i][0] = i+1; // 1 based indexing 
+            meet[i][1] = S[i];
+            meet[i][2] = F[i];
+        }
+        //Sorting the 2D array meet on basis of third column as we are sorting with 
+        // respect to Finish time.
+        Arrays.sort(meet , Comparator.comparingInt(o -> o[2]));
+        int store = meet[0][2];
+        ans.add(meet[0][0]);
+        for(int i=1;i<N;i++){
+            if(meet[i][1] > store){
+                ans.add(meet[i][0]);
+                store = meet[i][2];
+            }
+        }
+        Collections.sort(ans);
+        return ans;
+    }
+}
+        
