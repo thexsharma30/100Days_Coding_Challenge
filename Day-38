@@ -1,0 +1,22 @@
+//Question: Count More than n/k Occurences
+//Given an array arr of size N and an element k. The task is to find the count of elements in the array that appear more than n/k times.
+
+class Solution 
+{
+    //Function to find all elements in array that appear more than n/k times.
+    public int countOccurence(int[] arr, int n, int k) 
+    {
+        int ans = 0;
+        HashMap<Integer, Integer> hm = new HashMap<>();
+        for(int x : arr){
+            hm.put(x, hm.getOrDefault(x,0) + 1);
+        }
+        int limit = n/k;
+        for(int y : hm.values()){
+            if(y > limit){
+                ans++;
+            }
+        }
+        return ans;
+    }
+}
