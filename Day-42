@@ -1,0 +1,28 @@
+//Question: Anti Diagonal Traversal of Matrix
+//Give a N*N square matrix, return an array of its anti-diagonals in top-leftmost to bottom-rightmost order. 
+//In an element of a anti-diagonal (i, j), surrounding elements will be (i+1, j-1) and (i-1, j+1). Look at the examples for more clarity.
+
+int n = matrix.length;
+        int dia = 2*n -1;
+        
+         ArrayList<ArrayList<Integer>> arr = new ArrayList<>(dia);
+         for (int i = 0; i < dia; i++) {
+           arr.add(new ArrayList());
+         }
+        int[] output = new int[n*n];
+        
+        for(int i = 0 ; i < n ; i++){
+            for(int j = 0 ; j < n ; j++){
+                arr.get(i+j).add(matrix[i][j]);
+            }
+        }
+        
+        int curr = 0;
+        
+        for(int i = 0 ; i < arr.size() ; i++){
+            for(int j = 0 ; j < arr.get(i).size() ; j++){
+                output[curr] = arr.get(i).get(j);
+                curr++;
+            }
+        }
+        return output;
