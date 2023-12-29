@@ -1,0 +1,39 @@
+//Question:Check if a string is repetition of its substring of k-length
+/*Given a string s, check if it is possible to convert it into a string that is the repetition of a substring of length k. Conversion has to be done by following the steps mentioned below only once:
+Select two indices i and j (zero-based indexing, i could be equal to j), such that i and j are divisible by k.
+Select substrings of length k starting from indices i and j.
+Replace substring starting at index i with substring starting at index j within the string.*/
+
+class Solution{
+public:
+	
+	int kSubstrConcat (int n, string s, int k)
+	{
+	    map<string,int> mp;
+        if(n%k != 0)
+            return 0;
+        if(n%k == 0 && n/k == 2)
+            return 1;
+        else 
+        {
+            string temp = "";
+            for(int i = 0; i<s.size(); i=i+k)
+            {
+                temp = "";
+                int j = 0; 
+                while(j < k)
+                {
+                    temp+=s[i];
+                    j++;
+                }
+                mp[temp]++;
+            }
+            for(auto itr = mp.begin(); itr != mp.end(); itr++)
+            {
+                if(itr->second >= (n/k) - 1)
+                    return true;
+            }
+        }
+        return false;
+	}
+};
