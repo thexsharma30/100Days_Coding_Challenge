@@ -1,0 +1,28 @@
+/*Question: New Year Resolution
+As the clock struck midnight on New Year's Eve, Geek bid farewell to the wasted moments of 2023, realizing the untapped potential of GFG's Problem of the Day.*/
+
+class Solution {
+    private:
+        void find(int ind,int coins[],int target, int &temp,int n) {
+            
+            if (ind == n) {
+                if (target==0) return;
+                else if (target%20==0||target%24==0||target == 2024) temp = 1;
+                return;
+            }
+             find(ind+1,coins,target+coins[ind],temp,n);
+            if (temp == 1) return;
+            find(ind+1,coins,target,temp,n);
+        }
+    
+    public:
+    int isPossible(int N , int coins[]) 
+    {
+        int ind = 0;
+       int result = 0;
+       find(ind,coins,0,result,N);
+      
+       return result;
+    }
+    
+};
