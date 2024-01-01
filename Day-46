@@ -1,0 +1,27 @@
+//Question: Array Pair Sum Divisibility Problem
+
+class Solution {
+    public boolean canPair(int[] nums, int k) {
+        // Code here
+        
+        //case 1: if odd no of elements, we can't make pairs.
+        if(nums.length%2==1)    return false;
+        
+        int[] arr = new int[k];
+        
+        for(int i : nums)   arr[i%k]++;
+        
+        //skiping 0th index, bcz those are divisable by k.
+        int low=1, high=k-1;
+        while(low<=high){
+            
+            //case 2: for k, if some x is present, so equal no of k-x must be there.
+            if(arr[low] != arr[high]) return false;
+            
+            low++;
+            high--;
+        }
+        
+        return true;
+    }
+}
