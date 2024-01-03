@@ -1,0 +1,23 @@
+//Question : Smallest window containing 0, 1 and 2
+//Given a string S consisting of the characters 0, 1 and 2. 
+//Your task is to find the length of the smallest substring of string S that contains all the three characters 0, 1 and 2. If no such substring exists, then return -1.
+
+class Solution {
+    public int smallestSubstring(String S) {
+        int[] count = new int[3]; // Count array to store the occurrences of characters 0, 1, and 2
+        int a = 0, b = 0, c = Integer.MAX_VALUE;
+
+        while (a < S.length()) {
+            count[S.charAt(a) - '0']++; // Increment the count for the current character
+            a++;
+
+            while (count[0] > 0 && count[1] > 0 && count[2] > 0) {
+                c = Math.min(c, a - b); // Update the minimum length
+                count[S.charAt(b) - '0']--; // Decrement the count for the character at index b
+                b++;
+            }
+        }
+
+        return (c == Integer.MAX_VALUE) ? -1 : c;
+    }
+};
