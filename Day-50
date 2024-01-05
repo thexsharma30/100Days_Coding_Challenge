@@ -1,0 +1,24 @@
+//Question : Count possible ways to construct buildings
+//There is a road passing through a city with N plots on both sides of the road. Plots are arranged in a straight line on either side of the road. Determine the total number of ways to construct buildings in these 
+//plots,ensuring that no two buildings are adjacent to each other. Specifically, buildings on opposite sides of the road cannot be adjacent
+
+class Solution
+{
+    public int TotalWays(int N)
+    {
+        if(N == 1) return 4;
+        if(N == 2) return 9;
+        long a = 2 ;
+        long b = 3;
+        long m = 1000000007;
+    long s = 0;
+    for(int i = 3 ; i<=N;i++)
+{
+    s = (a + b) % m;
+    a =b;
+    b = s;
+} 
+
+        return (int)( (s * s)%m);
+    }
+}
