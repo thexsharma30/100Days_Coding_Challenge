@@ -1,0 +1,27 @@
+//Question: Search Pattern (KMP-Algorithm)
+//Given two strings, one is a text string, txt and other is a pattern string, pat. The task is to print the indexes of all the occurences of pattern string in the text string. Use one-based indexing while returing the indices. 
+//Note: Return an empty list incase of no occurences of pattern. Driver will print -1 in this case.
+
+
+class Solution
+{
+    
+    ArrayList<Integer> search(String pat, String txt)
+    {
+        ArrayList<Integer> al = new ArrayList<>();
+        int i = 0;
+        
+        while(true){
+            int idx = txt.indexOf(pat, i);
+            if(idx==-1){
+                break;
+            }else{
+                al.add(idx+1);
+                i=idx+1;
+            }
+        }
+        
+        if(al.size()==0)al.add(-1);
+        return al;
+    }
+}
