@@ -1,0 +1,24 @@
+//Questions:Insertion Sort for Singly Linked List
+//Given a singly linked list, sort the list (in ascending order) using insertion sort algorithm.
+
+class Solution
+{
+    public static Node insertionSort(Node head_ref)
+    {
+        Node finalHead = head_ref;
+        
+        for(Node curr = head_ref; curr != null; curr = curr.next)
+        {
+            for(Node next = curr.next; next != null; next = next.next)
+            {
+                if(curr.data > next.data)
+                {
+                    int tempData = curr.data;
+                    curr.data = next.data;
+                    next.data = tempData;
+                }
+            }
+        }
+        return finalHead;
+    }
+}
