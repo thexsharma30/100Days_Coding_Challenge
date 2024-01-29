@@ -1,0 +1,34 @@
+//Question: Count digit groupings of a number
+/*Given a string str consisting of digits, you can divide it into sub-groups by separating the string into substrings. For example, "112" can be divided as {"1", "1", "2"}, {"11", "2"}, {"1", "12"}, and {"112"}.
+A valid grouping can be done if you are able to divide sub-groups where the sum of digits in a sub-group is less than or equal to the sum of the digits of the sub-group immediately right to it. 
+Your task is to determine the total number of valid groupings that could be done for a given string.*/
+
+class Solution {
+    public int solve(int ind, int prevSum, int n, String str, int dp[][]) {
+        if(ind == n)
+            return 1;
+            
+        if(dp[ind][prevSum] != -1)
+            return dp[ind][prevSum];
+            
+        int count = 0, sum = 0;
+        for(int i = ind; i < n; i++) {
+            sum += str.charAt(i) - '0';
+            if(prevSum <= sum)
+                count += solve(i + 1, sum, n, str, dp);
+        }
+        
+        return dp[ind][prevSum] = count;
+    } 
+    
+    public int TotalCount(String str) {
+	    int n = str.length();
+	    int dp[][] = new int[n][1000];
+	    
+	    for(int i = 0; i < n; i++)
+	        for(int j = 0; j < 1000; j++)
+	            dp[i][j] = -1;
+	    
+	    return solve(0, 0, n, str, dp);
+    }
+}
