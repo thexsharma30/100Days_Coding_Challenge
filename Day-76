@@ -1,0 +1,23 @@
+//Question: Panagram Checking
+
+class Solution
+{
+    //Function to check if a string is Pangram or not.
+    public static boolean checkPangram  (String str) {
+        // your code here
+        
+        String str1 = str.toLowerCase(); // convert string to lowercase
+        int a[] = new int[256];
+        
+        for(int i = 0; i < str1.length(); i++){
+            a[str1.charAt(i)]++; // increment count of each character
+        }
+        for(int i = 97; i < 123; i++){ // run loop between asci values of lowercase characters
+            if(a[i] < 1){
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
