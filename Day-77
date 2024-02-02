@@ -1,0 +1,14 @@
+//Question: Implement Atoi
+/*Given a string, s, the objective is to convert it into integer format without utilizing any built-in functions. If the conversion is not feasible, the function should return -1.*/
+
+class Solution {
+    int atoi(String s) {
+        try {
+            int n = Integer.parseInt(s);
+            return n;
+        } catch (NumberFormatException e) {
+            // Return -1 for invalid input
+            return -1;
+        }
+    }
+}
