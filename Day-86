@@ -1,0 +1,24 @@
+//Question: Clone an Undirected Graph
+
+
+class Solution{
+    
+    private Node rec(Node node, boolean visited[]) {
+        Node clone = new Node(node.val);
+        visited[node.val] = true;
+        
+        for(Node nei : node.neighbors) {
+            if(!visited[nei.val]) {
+                clone.neighbors.add(rec(nei, visited));
+            }
+        }
+        
+        return clone;
+    }
+    
+    Node cloneGraph(Node node){
+        boolean visited[] = new boolean[100000];
+        return rec(node, visited);
+        
+    }
+}
