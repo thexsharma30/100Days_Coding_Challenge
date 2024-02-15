@@ -1,0 +1,27 @@
+//Question: Count all Possible Path
+/*You are presented with an undirected connected graph consisting of n vertices and connections between them represented by an adjacency matrix. Your objective is to determine whether 
+it is possible to start traversing from a node, x, and return to it after traversing all the vertices at least once, using each edge exactly once.*/
+
+class Solution
+{
+    public int isPossible(int[][] paths)
+    {
+        int v = paths.length;
+        int indeg[] = new int[v];
+        
+        for(int i=0;i<v;i++){
+            for(int j=0;j<v;j++){
+                if(paths[i][j]==1){
+                    indeg[i]++;
+                }        
+            }
+        }
+        
+        for(int i=0;i<v;i++){
+            if(indeg[i]%2!=0){
+                return 0;
+            }
+        }
+        return 1;
+    }
+}
