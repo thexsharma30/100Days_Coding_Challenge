@@ -1,0 +1,10 @@
+//Question: Does array represent Heap
+//Given an array arr of size n, the task is to check if the given array can be a level order representation of a Max Heap.
+class Solution {
+    public boolean countSub(long arr[], long n){
+        for (int i=1; i<n; i++)
+            if (arr[(i-1)/2] < arr[i])
+                return false;
+        return true;
+    }
+}
