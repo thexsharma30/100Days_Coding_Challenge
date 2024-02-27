@@ -1,0 +1,17 @@
+//Question: Check if a number is divisible by 8
+//Given a string representation of a decimal number s, check whether it is divisible by 8.
+
+class Solution{
+    int DivisibleByEight(String S){
+        //code here
+        
+        if(S.length()<3){
+            int ele=Integer.parseInt(S);
+            return ele%8==0 ? 1: -1;
+        }
+        String num=S.substring(S.length()-3,S.length());
+        int res=Integer.parseInt(num);
+        return res%8==0 ? 1 :-1;
+    }
+}
+
