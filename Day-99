@@ -1,0 +1,27 @@
+//Question: Sum of bit differences
+/*Given an array integers arr[], containing n elements, find the sum of bit differences between all pairs of element in the array. Bit difference of a pair (x, y) is the count of different bits at the same positions in binary representations of x and y.
+For example, bit difference for 2 and 7 is 2. Binary representation of 2 is 010 and 7 is 111 respectively and the first and last bits differ between the two numbers.*/
+
+class Solution {
+    long sumBitDifferences(int[] arr, int n) {
+        long totalBitDifferences = 0;
+
+        // Iterate over each bit position
+        for (int i = 0; i < 32; i++) { // Assuming 32-bit integers
+            int countOnes = 0;
+
+            // Count the number of elements with set bit at position i
+            for (int j = 0; j < n; j++) {
+                if ((arr[j] & (1 << i)) != 0) {
+                    countOnes++;
+                }
+            }
+
+            // Number of ones times number of zeroes at position i
+            // contributes to the total bit differences
+            totalBitDifferences += (long) countOnes * (n - countOnes);
+        }
+
+        return totalBitDifferences * 2; // Multiply by 2 as we are counting each pair twice
+    }
+}
